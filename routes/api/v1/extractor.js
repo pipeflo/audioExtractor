@@ -10,7 +10,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/request', function (req, res, next) {
-  res.status(200).json(req.body);
+  console.log(req.body);
+  Controller.getVideosFromQueue(req, res);
 });
 
 router.post('/request', function (req, res, next) {

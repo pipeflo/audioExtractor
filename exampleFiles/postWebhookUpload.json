@@ -1,0 +1,66 @@
+{
+    type: 'webhook_event',
+    id: 'c6e5a5a8-67a0-4dcd-9fbf-4ceaa17557fe',
+    created_at: '2020-12-06T16: 27: 05-08: 00',
+    trigger: 'FILE.UPLOADED',
+    webhook: { id: '427056950', type: 'webhook'
+  },
+    created_by: {
+      type: 'user',
+      id: '9577692731',
+      name: 'Luis Felipe',
+      login: 'luisfelipe@brightbots.co'
+  },
+    source: {
+      id: '750334438176',
+      type: 'file',
+      file_version: {
+        type: 'file_version',
+        id: '799656770976',
+        sha1: '40f07f0314e748dbd873922271caa8c8bc9044e2'
+    },
+      sequence_id: '0',
+      etag: '0',
+      sha1: '40f07f0314e748dbd873922271caa8c8bc9044e2',
+      name: 'Casey_Zhang-IMG_5759.mp3',
+      description: '',
+      size: 1154648,
+      path_collection: { total_count: 2, entries: [Array
+      ]
+    },
+      created_at: '2020-12-06T16: 27: 05-08: 00',
+      modified_at: '2020-12-06T16: 27: 05-08: 00',
+      trashed_at: null,
+      purged_at: null,
+      content_created_at: '2020-12-06T13: 26: 34-08: 00',
+      content_modified_at: '2020-12-06T13: 26: 34-08: 00',
+      created_by: {
+        type: 'user',
+        id: '9577692731',
+        name: 'Luis Felipe',
+        login: 'luisfelipe@brightbots.co'
+    },
+      modified_by: {
+        type: 'user',
+        id: '9577692731',
+        name: 'Luis Felipe',
+        login: 'luisfelipe@brightbots.co'
+    },
+      owned_by: {
+        type: 'user',
+        id: '9577692731',
+        name: 'Luis Felipe',
+        login: 'luisfelipe@brightbots.co'
+    },
+      shared_link: null,
+      parent: {
+        type: 'folder',
+        id: '127153919624',
+        sequence_id: '0',
+        etag: '0',
+        name: 'Fayetteville Test'
+    },
+      item_status: 'active'
+  },
+    additional_info: []
+}
