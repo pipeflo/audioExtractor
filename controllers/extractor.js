@@ -9,6 +9,7 @@ var https = require('https')
     });
 ;
 AWS.config.update({ region: 'us-east-1' });
+AWS.config.credentials = new AWS.EC2MetadataCredentials();
 var sqs = new AWS.SQS({ apiVersion: '2012-11-05' });
 
 module.exports = {
