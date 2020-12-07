@@ -11,6 +11,7 @@ var https = require('https')
 AWS.config.update({ region: 'us-east-1' });
 AWS.config.credentials = new AWS.EC2MetadataCredentials();
 var sqs = new AWS.SQS({ apiVersion: '2012-11-05' });
+var queueUrl = "https://sqs.us-east-1.amazonaws.com/876382409379/videos";
 
 module.exports = {
     getStream: function (req, res) {
@@ -102,7 +103,7 @@ module.exports = {
             MessageBody: "Information about current NY Times fiction bestseller for week of 12/11/2016.",
             // MessageDeduplicationId: "TheWhistler",  // Required for FIFO queues
             // MessageGroupId: "Group1",  // Required for FIFO queues
-            QueueUrl: "https://sqs.us-east-1.amazonaws.com/876382409379/videos"
+            QueueUrl: queueUrl
         };
 
         sqs.sendMessage(params, function (err, data) {
@@ -118,16 +119,47 @@ module.exports = {
                 res.status(200).json(data.MessageId);
             }
         });
+    }
+    , getVideosFromQueue: function (req, res) {
+        console.log("Entró al Controller de listar videos en cola");
+        var params = {
+            AttributeNames: [
+                "SentTimestamp"
+            ],
+            MaxNumberOfMessages: 1,
+            MessageAttributeNames: [
+                "All"
+            ],
+            QueueUrl: queueURL,
+            VisibilityTimeout: 20,
+            WaitTimeSeconds: 0
+        };
 
-        /*sqs.listQueues(params, function (err, data) {
+        sqs.receiveMessage(params, function (err, data) {
             if (err)
             {
-                console.log("Error", err);
-            } else
+                console.log("Receive Error", err);
+                res.status(500).json({
+                    "message": "Error recibiendo mensajes de cola de videos"
+                });
+            } else if (data.Messages)
             {
-                console.log("Success", data.QueueUrls);
-                res.status(200).json(data.QueueUrls);
+                console.log("Success", data.Messages[0]);
+                res.status(200).json(data.Messages[0]);
+                /*var deleteParams = {
+                    QueueUrl: queueURL,
+                    ReceiptHandle: data.Messages[0].ReceiptHandle
+                };
+                sqs.deleteMessage(deleteParams, function (err, data) {
+                    if (err)
+                    {
+                        console.log("Delete Error", err);
+                    } else
+                    {
+                        console.log("Message Deleted", data);
+                    }
+                });*/
             }
-        });*/
+        });
     }
 }
