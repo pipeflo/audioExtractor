@@ -87,20 +87,12 @@ module.exports = {
         var params = {
             // Remove DelaySeconds parameter and value for FIFO queues
             MessageAttributes: {
-                "Title": {
+                "videoName": {
                     DataType: "String",
-                    StringValue: "The Whistler"
-                },
-                "Author": {
-                    DataType: "String",
-                    StringValue: "John Grisham"
-                },
-                "WeeksOn": {
-                    DataType: "Number",
-                    StringValue: "6"
+                    StringValue: req.body.source.name
                 }
             },
-            MessageBody: "Information about current NY Times fiction bestseller for week of 12/11/2016.",
+            MessageBody: req.body.source.id,
             // MessageDeduplicationId: "TheWhistler",  // Required for FIFO queues
             // MessageGroupId: "Group1",  // Required for FIFO queues
             QueueUrl: queueUrl
