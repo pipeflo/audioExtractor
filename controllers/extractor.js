@@ -130,7 +130,7 @@ module.exports = {
             MessageAttributeNames: [
                 "All"
             ],
-            QueueUrl: queueURL,
+            QueueUrl: queueUrl,
             VisibilityTimeout: 20,
             WaitTimeSeconds: 0
         };
