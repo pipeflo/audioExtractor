@@ -5,11 +5,16 @@ var express = require('express')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
+
   res.send('entró a respuesta API extractor');
 });
 
 router.get('/request', function (req, res, next) {
-  res.send('entró a respuesta API extractor request');
+  res.status(200).json(req.body);
+});
+
+router.post('/request', function (req, res, next) {
+  res.status(200).json(req.body);
 });
 
 module.exports = router;
