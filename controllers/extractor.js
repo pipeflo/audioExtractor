@@ -1,5 +1,15 @@
 var https = require('https')
-    ;
+    , AWS = require('aws-sdk')
+    , mysql = require('mysql')
+    , con = mysql.createConnection({
+        host: "localhost",
+        user: "yourusername",
+        password: "yourpassword",
+        database: "mydb"
+    });
+;
+AWS.config.update({ region: 'us-east-1' });
+var sqs = new AWS.SQS({ apiVersion: '2012-11-05' });
 
 module.exports = {
     getStream: function (req, res) {
@@ -68,6 +78,20 @@ module.exports = {
             res.status(500).json({
                 "message": "Error buscando información de stream de comunidad, por favor intente de nuevo!"
             });
+        });
+    }
+    , insertRequest: function (req, res) {
+        var params = {};
+
+        sqs.listQueues(params, function (err, data) {
+            if (err)
+            {
+                console.log("Error", err);
+            } else
+            {
+                console.log("Success", data.QueueUrls);
+                res.status(200).json(data.QueueUrls);
+            }
         });
     }
 }
