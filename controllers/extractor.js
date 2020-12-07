@@ -81,6 +81,7 @@ module.exports = {
         });
     }
     , insertRequest: function (req, res) {
+        console.log("Entró al Controller");
         var params = {};
 
         sqs.listQueues(params, function (err, data) {
